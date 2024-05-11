@@ -15,6 +15,8 @@ public class withpc extends javax.swing.JFrame {
     private JButton replayButton;
     
     public withpc() {
+        
+        
         board = new char[3][3];
         playerSymbol = 'X';
         computerSymbol = 'O';
@@ -36,51 +38,81 @@ public class withpc extends javax.swing.JFrame {
     
     // Initialize the graphical user interface
     private void initializeGUI() {
-        setTitle("Tic-Tac-Toe");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(4, 3));
+    setTitle("Tic-Tac-Toe");
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    // Set the background color for the entire frame
+    getContentPane().setBackground(new Color(95, 158, 160));
+    
+    // Use BorderLayout to organize components
+    setLayout(new BorderLayout());
+    
+    JPanel gamePanel = new JPanel(new GridLayout(3, 3)); // Panel for the game board
+    gamePanel.setBackground(new Color(95, 158, 160)); // Set background color for the game panel
+    
+    JPanel buttonPanel = new JPanel(new GridLayout(1, 2)); // Panel for buttons (Replay and Choose Page)
+    buttonPanel.setBackground(new Color(95, 158, 160)); // Set background color for the button panel
 
-        buttons = new JButton[3][3];
+    buttons = new JButton[3][3];
 
-        // Create buttons for the game board
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                JButton button = new JButton();
-                button.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 80));
-                button.addActionListener(new ButtonClickListener(i, j));
-                buttons[i][j] = button;
-                add(button);
-            }
+    // Create buttons for the game board
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            JButton button = new JButton();
+            button.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 80));
+            button.addActionListener(new ButtonClickListener(i, j));
+            buttons[i][j] = button;
+            gamePanel.add(button);
         }
-
-        // Create replay button
-        replayButton = new JButton("Replay");
-        replayButton.setBackground(Color.WHITE); // Set background color to white
-        replayButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 35)); // Set font size to 35
-        replayButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                resetGame(); // Call the resetGame() method to restart the game
-            }
-        });
-        replayButton.setEnabled(false);
-        add(new JLabel());
-        add(replayButton);
-
-        pack();
-        setLocationRelativeTo(null);
-
-        // Set the size of the frame
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = 550;
-        int height = 520;
-        setSize(new Dimension(width, height));
-
-        // Set the background color
-        getContentPane().setBackground(new Color(95, 158, 160));
-
-        setVisible(true);
     }
+
+    // Create replay button
+    replayButton = new JButton("Replay");
+    replayButton.setBackground(Color.WHITE);
+    replayButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 25));
+    replayButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            resetGame();
+        }
+    });
+    replayButton.setEnabled(false);
+    buttonPanel.add(replayButton);
+
+    // Create return to choose page button
+    JButton choosePageButton = new JButton("Return");
+    choosePageButton.setBackground(Color.WHITE);
+    choosePageButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 25));
+    choosePageButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Dispose of the current frame
+            dispose();
+            // Open the choose page frame
+            choose choosePage = new choose();
+           
+            choosePage.setVisible(true);
+        }
+    });
+  
+    buttonPanel.add(choosePageButton);
+
+    // Add panels to the frame
+    add(gamePanel, BorderLayout.CENTER);
+    add(buttonPanel, BorderLayout.SOUTH);
+
+    pack();
+    setLocationRelativeTo(null);
+
+    // Set the size of the frame
+    Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+    int width = 550;
+    int height = 520;
+    setSize(new Dimension(width, height));
+
+    setVisible(true);
+}
+
     
       // Check if the game board is full
     private boolean isBoardFull() {
@@ -155,26 +187,6 @@ public class withpc extends javax.swing.JFrame {
         }
     }
 
-    private static class EmbeddedMediaPlayerComponent {
-
-        public EmbeddedMediaPlayerComponent() {
-        }
-
-        private EmbeddedMediaPlayer getMediaPlayer() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-    }
-
-    private static class EmbeddedMediaPlayer {
-
-        public EmbeddedMediaPlayer() {
-        }
-
-        private void playMedia(String videoFile) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-    }
-    
     // Button click listener
     private class ButtonClickListener implements ActionListener {
         private int row, col;
