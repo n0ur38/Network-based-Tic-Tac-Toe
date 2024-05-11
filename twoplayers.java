@@ -1,7 +1,9 @@
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -90,14 +92,24 @@ public class twoplayers extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        testingr t = new testingr();
-        t.setVisible(true);
+        openmulti();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        openmulti2();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+   
+    private void openmulti() {
+        multiplayer tt = new multiplayer();
+        tt.setVisible(true);
+    }
+       
+    private void openmulti2() {
+        multiplayer ttt = new multiplayer();
+        ttt.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -142,6 +154,10 @@ public class twoplayers extends javax.swing.JFrame {
     private static class IOException {
 
         public IOException() {
+        }
+
+        private void printStackTrace() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
     }
 }
