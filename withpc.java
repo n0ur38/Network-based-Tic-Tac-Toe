@@ -50,7 +50,7 @@ public class withpc extends javax.swing.JFrame {
     JPanel gamePanel = new JPanel(new GridLayout(3, 3)); // Panel for the game board
     gamePanel.setBackground(new Color(95, 158, 160)); // Set background color for the game panel
     
-    JPanel buttonPanel = new JPanel(new GridLayout(1, 2)); // Panel for buttons (Replay and Choose Page)
+    JPanel buttonPanel = new JPanel(new GridLayout(1, 2)); // Panel for buttons (Replay and return)
     buttonPanel.setBackground(new Color(95, 158, 160)); // Set background color for the button panel
 
     buttons = new JButton[3][3];
@@ -177,15 +177,7 @@ public class withpc extends javax.swing.JFrame {
         return row >= 0 && row < 3 && col >= 0 && col < 3 && board[row][col] == '-';
     }
 
-    private static class jLabel1 {
-
-        private static void setText(String string) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        public jLabel1() {
-        }
-    }
+   
 
     // Button click listener
     private class ButtonClickListener implements ActionListener {
